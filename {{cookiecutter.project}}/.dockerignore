@@ -1,0 +1,16 @@
+venv/
+*.egg-info/
+config.json
+state.json
+output.json
+test.py
+DESIGN.md
+__pycache__/
+.gitignore
+.vscode/
+.tox/
+.mypy_cache/
+setup.cfg
+tox.ini
+.github/
+tests/

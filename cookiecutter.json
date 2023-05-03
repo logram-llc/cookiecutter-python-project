@@ -1,0 +1,8 @@
+{
+    "project": "",
+    "description": "",
+    "author": "",
+    "author_email": "",
+    "type": ["library", "cli app"],
+    "python_version": ["3.10", "3.11"]
+}

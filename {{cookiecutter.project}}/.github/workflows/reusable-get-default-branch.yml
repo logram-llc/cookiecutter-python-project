@@ -1,4 +1,5 @@
 
+{% raw %}
 name: Get Default Branch Name
 on:
   workflow_call:
@@ -31,3 +32,4 @@ jobs:
         id: set_output
         run: |
           echo default_branch=${{ steps.default_branch.outputs.result }} >> $GITHUB_OUTPUT
+{% endraw %}

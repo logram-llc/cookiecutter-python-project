@@ -33,11 +33,17 @@ jobs:
         id: type_check
         continue-on-error: true
         run: |
+          set +e
           STDOUT=$(tox -e type-check)
+          OUTCOME=$?
+
+          echo "$STDOUT"
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "stdout<<$EOF" >> "$GITHUB_OUTPUT"
           echo "$STDOUT" >> "$GITHUB_OUTPUT"
           echo "$EOF" >> "$GITHUB_OUTPUT"
+
+          exit $OUTCOME
 
       - name: Run isort checker
         id: isort_check
@@ -53,11 +59,17 @@ jobs:
         id: lint_check
         continue-on-error: true
         run: |
+          set +e
           STDOUT=$(tox -e lint-check)
+          OUTCOME=$?
+
+          echo "$STDOUT"
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "stdout<<$EOF" >> "$GITHUB_OUTPUT"
           echo "$STDOUT" >> "$GITHUB_OUTPUT"
           echo "$EOF" >> "$GITHUB_OUTPUT"
+
+          exit $OUTCOME
 
       - name: Add PR comment
         uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6.4.1

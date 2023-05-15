@@ -31,11 +31,18 @@ jobs:
 
       - name: Run pytest coverage with tox
         run: |
+          set +e
           STDOUT=$(tox -e pytest-cov)
+          OUTCOME=$?
+
+          echo "$STDOUT"
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "stdout<<$EOF" >> "$GITHUB_OUTPUT"
           echo "$STDOUT" >> "$GITHUB_OUTPUT"
           echo "$EOF" >> "$GITHUB_OUTPUT"
+
+          exit $OUTCOME
+
         id: pytest_cov
         continue-on-error: true
 

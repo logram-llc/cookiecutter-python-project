@@ -65,11 +65,14 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 # Same as Black.
 line-length = 110
 extend-select = [
-    "I", # Missing required import (auto-fixable)
     "UP", # Pyupgrade
     "RUF100", # Unused noqa (auto-fixable)
 ]
-extend-ignore = []
+extend-ignore = [
+    # Let isort handle
+    "I",
+    "E402"
+]
 
 [tool.ruff.mccabe]
 # Unlike Flake8, default to a complexity level of 10.

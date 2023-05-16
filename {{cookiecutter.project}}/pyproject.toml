@@ -71,7 +71,9 @@ extend-select = [
 extend-ignore = [
     # Let isort handle
     "I",
-    "E402"
+    "E402",
+    # Let Black handle
+    "E501"
 ]
 
 [tool.ruff.mccabe]

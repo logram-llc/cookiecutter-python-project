@@ -36,11 +36,12 @@ jobs:
           set +e
           STDOUT=$(tox -e type-check)
           OUTCOME=$?
+          TRIMMED_STDOUT=$(echo "$STDOUT" | sed 's/[`$]//g')
 
-          echo "$STDOUT"
+          echo "$TRIMMED_STDOUT"
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "stdout<<$EOF" >> "$GITHUB_OUTPUT"
-          echo "$STDOUT" >> "$GITHUB_OUTPUT"
+          echo "$TRIMMED_STDOUT" >> "$GITHUB_OUTPUT"
           echo "$EOF" >> "$GITHUB_OUTPUT"
 
           exit $OUTCOME
@@ -62,11 +63,12 @@ jobs:
           set +e
           STDOUT=$(tox -e lint-check)
           OUTCOME=$?
+          TRIMMED_STDOUT=$(echo "$STDOUT" | sed 's/[`$]//g')
 
-          echo "$STDOUT"
+          echo "$TRIMMED_STDOUT"
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           echo "stdout<<$EOF" >> "$GITHUB_OUTPUT"
-          echo "$STDOUT" >> "$GITHUB_OUTPUT"
+          echo "$TRIMMED_STDOUT" >> "$GITHUB_OUTPUT"
           echo "$EOF" >> "$GITHUB_OUTPUT"
 
           exit $OUTCOME
